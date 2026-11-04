@@ -65,8 +65,13 @@ app.put("/usuario",function (req,res,next) {
      res.status(200).send("put");
 })
 // metodo Delete 
-app.delete("/usuario",function (req,res,next) {
-     res.status(200).send("Delete");
+app.delete("/usuario/:id",function (req,res,next) {
+    User.forEach(element=>{
+        if (element.id == req.params.id) {
+            delete User[User.indexOf(element)]
+        }
+    })
+     res.status(200).send([{mensagen:"Usuario deletado"}]);
 })
 
 

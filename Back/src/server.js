@@ -38,19 +38,26 @@ app.get("/usuario",function (req,res,next) {
 })
 
 //receber o parametro via id
+
 app.get("/usuario/:id",function (req,res,next) {
+    var resultData =[];
    User.forEach(element => {
     if (element.id == req.params.id) {
-        res.status(200).send(element)
-    }else{
-        res.status(404);
+       resultData.push(element);
     }
    });
+    if (resultData.length >0) {
+    res.status(200).send(resultData);
+        }else{
+    res.status(404).send([{erro:"Usuario não encontrado"}]);
+    }
 })
+
 
 //metodo Post
 app.post("/usuario",function(req,res,next) {
-     res.status(200).send("usuario criado com exito");
+     User.push(req.body);
+     res.status(200).send([{mensagen:"Done"}])
 })
 
 // metodo Put 

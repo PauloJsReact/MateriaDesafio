@@ -15,6 +15,11 @@ app.get("/usuario",function (req,res,next) {
     res.status(200).send("<h1>bem vindo a loja</h1>");
 })
 
+//receber o parametro via id
+app.get("/usuario/:id",function (req,res,next) {
+    res.status(200).send("Usuario Id "+req.params.id+"..");
+})
+
 //metodo Post
 app.post("/usuario",function(req,res,next) {
      res.status(200).send("usuario criado com exito");

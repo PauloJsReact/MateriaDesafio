@@ -39,7 +39,7 @@ app.get("/usuario",function (req,res,next) {
 
 //receber o parametro via id
 app.get("/usuario/:id",function (req,res,next) {
-   User.array.forEach(element => {
+   User.forEach(element => {
     if (element.id == req.params.id) {
         res.status(200).send(element)
     }else{

@@ -61,8 +61,18 @@ app.post("/usuario",function(req,res,next) {
 })
 
 // metodo Put 
-app.put("/usuario",function (req,res,next) {
-     res.status(200).send("put");
+app.put("/usuario/:id",function (req,res,next) {
+    User.forEach(element =>{
+        if (element.id == req.params.id) {
+            if (element.name != req.body.name) {
+            element.name = req.body.name
+            }
+            if (element.email !=req.body.email) {
+                element.email = req.body.email
+            }
+        }
+    })
+     res.status(200).send([{mensagen:"put"}]);
 })
 // metodo Delete 
 app.delete("/usuario/:id",function (req,res,next) {

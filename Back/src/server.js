@@ -1,11 +1,31 @@
 const express = require("express");
 const bodyParse = require("body-parser");
-const schema = require("mongoose");
+const Schema = require("mongoose");
+const { default: mongoose } = require("mongoose");
 const  app = express();
 
 
 //Db
 mongoose.connect("mongodb+srv://paulo21engenharia_db_user:<db_password>@cluster0.xntkff4.mongodb.net/");
+const schemas = Schema({
+    name:{
+        type:String,
+        require:[true,"Nome é Obrigatorimo"],
+        trim:true,
+        unique:true
+    },
+    email:{
+        type:String,
+        require:[true,"Email é obrigatorio"],
+        trim:true,
+        unique:true
+    },
+    saldo:{
+        type:String,
+    }
+})
+
+const Client =mongoose.model("Client",schemas);
 
 ///Json Parse
 app.use(bodyParse.json());

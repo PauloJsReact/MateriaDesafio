@@ -58,24 +58,29 @@ app.get("/",function (req,res,next) {
 app.get("/loja",function (req,res,next) {
     res.status(200).send("<h1>bem vindo a loja</h1>");
 })
+
 app.get("/usuario",function (req,res,next) {
-    res.status(200).send(User);
+    Client.find().then(data =>{
+        res.status(200).send(data);
+    }).catch(e=>{
+        res.status(400).send({mensagem:"erro",erro:e});
+    });
+    
 })
 
 //receber o parametro via id
 
-app.get("/usuario/:id",function (req,res,next) {
+app.get("/usuario/:_id",function (req,res,next) {
     var resultData =[];
-   User.forEach(element => {
-    if (element.id == req.params.id) {
-       resultData.push(element);
-    }
-   });
-    if (resultData.length >0) {
-    res.status(200).send(resultData);
-        }else{
-    res.status(404).send([{erro:"Usuario não encontrado"}]);
-    }
+   Client.find({_id:req.params._id}).then(data =>{
+    res.status(200).send(data);
+   }
+   ).catch(e=>{
+    res.status(400).send({
+        messagem:"erro",
+        erro:e
+    })
+  });
 })
 
 

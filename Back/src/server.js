@@ -1,7 +1,11 @@
 const express = require("express");
 const bodyParse = require("body-parser");
-
+const schema = require("mongoose");
 const  app = express();
+
+
+//Db
+mongoose.connect("mongodb+srv://paulo21engenharia_db_user:<db_password>@cluster0.xntkff4.mongodb.net/");
 
 ///Json Parse
 app.use(bodyParse.json());

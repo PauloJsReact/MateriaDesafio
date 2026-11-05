@@ -1,27 +1,28 @@
 const express = require("express");
 const bodyParse = require("body-parser");
-const Schema = require("mongoose");
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 const  app = express();
 
 
 //Db
-mongoose.connect("mongodb+srv://paulo21engenharia_db_user:<db_password>@cluster0.xntkff4.mongodb.net/");
-const schemas = Schema({
+mongoose.connect("mongodb+srv://paulo21engenharia_db_user:ArX9FEWAAh4vjlOm@cluster0.xntkff4.mongodb.net/");
+const schemas =new Schema({
     name:{
         type:String,
-        require:[true,"Nome é Obrigatorimo"],
+        required:[true,"Nome é Obrigatorimo"],
         trim:true,
         unique:true
     },
     email:{
         type:String,
-        require:[true,"Email é obrigatorio"],
+        required:[true,"Email é obrigatorio"],
         trim:true,
         unique:true
     },
     saldo:{
         type:String,
+        
     }
 })
 
@@ -80,8 +81,13 @@ app.get("/usuario/:id",function (req,res,next) {
 
 //metodo Post
 app.post("/usuario",function(req,res,next) {
-     User.push(req.body);
-     res.status(200).send([{mensagen:"Done"}])
+
+     var userTemp = new Client(req.body);
+     userTemp.save().then(data =>{
+         res.status(200).send({mensagen:"Done"});
+     }).catch(e =>{
+        res.status(404).send({mensagem:"erro"})
+     })
 })
 
 // metodo Put 

@@ -1,1 +1,0 @@
-console.log("aqui fica a logica do site")

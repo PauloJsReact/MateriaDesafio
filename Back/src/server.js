@@ -3,7 +3,7 @@ const bodyParse = require("body-parser");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const  app = express();
-
+const cors = require("cors");
 
 //Db
 mongoose.connect("mongodb+srv://paulo21engenharia_db_user:ArX9FEWAAh4vjlOm@cluster0.xntkff4.mongodb.net/");
@@ -31,6 +31,12 @@ const Client =mongoose.model("Client",schemas);
 ///Json Parse
 app.use(bodyParse.json());
 app.use(bodyParse.urlencoded({extended:true}))
+app.use(cors({
+    origin:["http://127.0.0.1:5500",
+         "http://localhost:5500"
+    ]
+}))
+
 
 //Data
 var User = [];

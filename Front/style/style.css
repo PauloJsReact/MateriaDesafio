@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+#usuario p {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+#menu{
+  display: flex;
+  justify-content: center;
+}
+#user-menu{
+  display: block;
+  border: 0 20px 0;
+  border-color: blue;
+}
+#icon-user {
+    color: rgb(2, 17, 17);
+}

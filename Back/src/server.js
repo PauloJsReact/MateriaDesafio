@@ -97,7 +97,7 @@ app.post("/usuario",function(req,res,next) {
      userTemp.save().then(data =>{
          res.status(200).send({mensagen:"Done"});
      }).catch(e =>{
-        res.status(404).send({mensagem:"erro"})
+        res.status(500).send({mensagem:"erro",erro:e})
      })
 })
 
